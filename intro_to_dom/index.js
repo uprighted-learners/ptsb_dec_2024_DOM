@@ -15,20 +15,20 @@
         - Various methods available
 */
 
-function askForStuff(){
-    let userInput = prompt("Hello how are you")
-    console.log(userInput)
+function askForStuff() {
+  let userInput = prompt("Hello how are you");
+  console.log(userInput);
 }
 
 // askForStuff()
 
-console.log(document)
-console.log(document.URL)
-console.log(document.location)
-console.log(document.title)
-document.title = "Learning about DOM"
+console.log(document);
+console.log(document.URL);
+console.log(document.location);
+console.log(document.title);
+document.title = "Learning about DOM";
 
-let h1 = document.createElement("h1")
+let h1 = document.createElement("h1");
 
 console.log(h1);
 
@@ -39,7 +39,7 @@ console.log(h1);
         - textContent: Returning the full text
 */
 
-h1.textContent = "Creating my first DOM Element"
+h1.textContent = "Creating my first DOM Element";
 
 /* 
     Chain of Events:
@@ -48,25 +48,25 @@ h1.textContent = "Creating my first DOM Element"
     3. Append/Place the element
 */
 
-document.body.appendChild(h1)
+document.body.appendChild(h1);
 
 // h1.style.color = "blue";
 // h1.style.textAlign = "center";
 
 // console.log(document.body.style);
 
-let color = "red"
+let color = "red";
 
 h1.style = `
     text-shadow: 2px 2px 2px yellow;
     color: ${color};
     text-align: center;
-`
+`;
 
-console.log(h1)
+console.log(h1);
 
-h1.className = "h1-class-name"
-h1.id = "set-id"
+h1.className = "h1-class-name";
+h1.id = "set-id";
 
 /* 
     ! Finding Elements
@@ -85,23 +85,23 @@ h1.id = "set-id"
 
 */
 
-let liCollection = document.getElementsByTagName("li") // Returns a HTMLCollection
+let liCollection = document.getElementsByTagName("li"); // Returns a HTMLCollection
 console.log(liCollection);
 
-for (i of liCollection){
-    i.style.color = "green"
+for (i of liCollection) {
+  i.style.color = "green";
 }
 
-let bathroom = liCollection[0]
-bathroom.style.color = "red"
+let bathroom = liCollection[0];
+bathroom.style.color = "red";
 
 // Convert from HTML collection to Array to do array like things, like forEach
-let liArr = Array.from(liCollection)
+let liArr = Array.from(liCollection);
 
 // another way to convert:
 // let liArr2 = [...liCollection]
 
-liArr.forEach(i => console.log(i))
+liArr.forEach((i) => console.log(i));
 
 /* 
     .querySelector()
@@ -112,39 +112,92 @@ liArr.forEach(i => console.log(i))
 
 */
 
-let firstLi = document.querySelector("li")
+let firstLi = document.querySelector("li");
 // console.log(firstLi);
 
-let listTitle = document.querySelector("#listTitle")
+let listTitle = document.querySelector("#listTitle");
 // console.log(listTitle);
-listTitle.style.textAlign = "center"
+listTitle.style.textAlign = "center";
 
-let toDoList =  document.querySelector("#toDoList")
+let toDoList = document.querySelector("#toDoList");
 // console.log(toDoList);
 
-let classListItem = document.querySelector(".listItem")
+let classListItem = document.querySelector(".listItem");
 // console.log(classListItem);
-
 
 /* 
     .querySelectorAll()
         - Returns a static nodeList (an array) list of elements
 */
 
-let nodeListLi = document.querySelectorAll(".listItem")
+let nodeListLi = document.querySelectorAll(".listItem");
 // console.log(nodeListLi)
 
-nodeListLi[1].style.color = "blue"
-nodeListLi.forEach((i) => console.log(i))
+nodeListLi[1].style.color = "blue";
+nodeListLi.forEach((i) => console.log(i));
 
-let newListItem = document.createElement("li")
-let ul = document.getElementById("ulToDo")
+let newListItem = document.createElement("li");
+let ul = document.getElementById("ulToDo");
 // console.log(ul);
 
-newListItem.textContent  = "New Item"
+newListItem.textContent = "New Item";
 
-ul.appendChild(newListItem)
+ul.appendChild(newListItem);
 
-let liClass = document.getElementsByClassName("listItem")
+let liClass = document.getElementsByClassName("listItem");
 
 console.log(liClass);
+
+/* 
+    ? Event Listeners
+
+        Allow us to execute a function when an event occurs
+
+        .addEventListener()
+            - DOM node method
+            - Requires an event to "listen for" or type and a callback function
+        
+        ex:
+            node.addEventListener("click", () => {
+                
+            })
+*/
+
+/* 
+    Adding an item to the list:
+        Step: 
+            - Capture the input
+            - Access the parent element
+            - Create a new element (li)
+            - Assign value to the attributes
+                - text from input
+            - Append to parent
+*/
+
+let btn = document.getElementById("submit");
+let input = document.getElementById("listInput");
+
+// btn.addEventListener("click", (e) => {
+//     console.log("Button was clicked");
+// console.log(e); Event obj that gets carried over to the callback, useful for getting specific data from the element. ex. Input fields value
+// })
+
+function addItem(e) {
+  // console.log(e);
+
+  if (input.value.length > 0) {
+    let newItem = document.createElement("li");
+
+    newItem.textContent = input.value;
+
+    newItem.style = `color: blue;`;
+
+    ul.appendChild(newItem);
+  } else {
+    alert("Please type something")
+  }
+}
+
+btn.addEventListener("click", addItem);
+
+input.addEventListener("keyup", (e) => console.log(e.target.value))
