@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <!--? Loading Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Afacad&family=Grandstander:wght@300&family=Libre+Franklin:wght@100&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--? Link our index.js file. -->
+    <!-- 
+                - defer will allow the script to load after the html
+                - type module, will help wil loading external scripts (todos.js)
+    -->
+    <script defer src="./index.js" type="module"></script>
+    <!--? Loading CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Do basic DOM manipulation -->
+
+    <section id="todo-container">
+      <h1 id="todo-heading">To Do List</h1>
+      <div>
+        <form id="todo-form">
+          <input
+            placeholder="Insert Todo here!"
+            type="text"
+            id="todo-add_text"
+            name="todo"
+          />
+          <select  name="emoji" id="emoji-selector">
+          </select>
+          <button type="submit" id="todo-add_button">➕</button>
+        </form>
+      </div>
+
+
+      
+      <ul id="todos">
+        <li class="todo">
+          <p class="emoji"></p>
+          <p class="todo-text"></p>
+          <button class="todo-delete">❌</button>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>

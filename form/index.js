@@ -1,4 +1,5 @@
 let form = document.querySelector("form");
+// Check if element exists (if we are on index.html 1, since it has a form)
 if (form){
     form.addEventListener("submit", (e) => {
         //? Preventing the page from refreshing
@@ -14,6 +15,7 @@ if (form){
         console.log({nameValue});
         console.log({emailValue});
         console.log({foodValue});
+        // Resets form values for us
         //! Will not allow query param values to carry over
         // formElement.reset()
     })
@@ -22,7 +24,7 @@ if (form){
 // Creating our own query string here.
 let paramString = "?name=foo&email=test@hotmail.com"
 // Another approach would be to obtain the query string, using document.location.search
-console.log(document.location.search); // Use this to slice out the query string found in the address bar
+console.log(document.location.search); // Use this to single out the query string found in the address bar
 let searchParams = new URLSearchParams(paramString) 
 
 // console.log(searchParams);
