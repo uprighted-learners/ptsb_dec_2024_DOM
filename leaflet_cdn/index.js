@@ -3,8 +3,8 @@ console.log(L);
 
 // Setting up map view
 let myMap = L.map("map").setView([51.505, -0.09], 13);
-// Setting the particular tile
 
+// Setting the particular tile
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 25,
   attribution:
@@ -12,10 +12,10 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(myMap);
 
 // Adding a marker to the map
-let marker = L.marker([51.5, -0.09]).addTo(myMap);
+// let marker = L.marker([51.5, -0.09]).addTo(myMap);
 
 // Using bindPopup to add set marker text
-marker.bindPopup("<b>Hello World</b> <br>I am a popup!").openPopup();
+// marker.bindPopup("<b>Hello World</b> <br>I am a popup!").openPopup();
 
 // Remove marker
 // marker.remove()
@@ -40,3 +40,16 @@ let line = L.polyline(
   ],
   { color: "purple" }
 ).addTo(myMap);
+
+
+myMap.locate({setView: true, maxZoom: 16}).on("locationfound", (e) => {
+    console.log("User located at:", e.latlng);
+
+    L.marker(e.latlng).addTo(myMap).bindPopup("You are here!").openPopup()
+})
+
+
+myMap.on("locationerror", (e) => {
+    console.log("Location access denied or failed");
+    alert("Could not retrieve your location, please enable geolocation access")
+})
